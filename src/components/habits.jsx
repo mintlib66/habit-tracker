@@ -13,42 +13,25 @@ class Habits extends Component {
 
     handleIncrement = (habit) => {
         console.log(`handleIncrement ${habit.name}`);
-        let copyHabits = [...this.state.habits];
-
-        copyHabits.map(item => {
-            if(item.id === habit.id){
-                item.count++;
-            }
-            return item;
-        });
-
-        this.setState({
-            habits: copyHabits
-        });
+        let habits = [...this.state.habits];
+        const index = habits.indexOf(habit);
+        habits[index].count++;
+        this.setState({habits});
         
     };
     handleDecrement = (habit) => {
         console.log(`handleDecrement${habit}`);
-        let copyHabits = [...this.state.habits];
-
-        copyHabits.map(item => {
-            if(item.id === habit.id){
-                item.count--;
-            }
-            return item;
-        });
-
-        this.setState({
-            habits: copyHabits
-        });
+        let habits = [...this.state.habits];
+        const index = habits.indexOf(habit);
+        if(habits[index].count > 0){
+            habits[index].count--;
+        }
+        this.setState({habits});
     };
     handleDelete = (habit) => {
         console.log(`handleDelete${habit}`);
-        let copyHabits = this.state.habits.filter(item => item.id !== habit.id);
-
-        this.setState({
-            habits: copyHabits
-        });
+        let habits = this.state.habits.filter(item => item.id !== habit.id);
+        this.setState({habits});
     };
 
     render() {
