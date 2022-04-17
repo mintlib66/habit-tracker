@@ -1,17 +1,16 @@
 import React, { Component, useState } from 'react';
 
 class Habit extends Component {
-    state = {
-        count: 0,
+    handleIncrement = () => {
+        //this.props.habit.count ++ ;
+        console.log(this.props.habit);
+        this.props.onIncrement(this.props.habit);
     };
-
-    handleIncreament = () => {
-        this.setState({count: this.state.count +1});
+    handleDecrement = () => {
+        this.props.onDecrement(this.props.habit);
     };
-    handleDecreament = () => {
-        const count = this.state.count -1;
-        //0미만으로 안내려가게 
-        this.setState({count: count < 0 ? 0 : count });
+    handleDelete = () => {
+        this.props.onDelete(this.props.habit);
     };
 
     render() {
@@ -21,13 +20,13 @@ class Habit extends Component {
             <li className='habit'>
                 <span className='habit-name'>{name}</span>
                 <span className='habit-count'>{count}</span>
-                <button className='habit-button habit-increase' onClick={this.handleIncreament}>
+                <button className='habit-button habit-increase' onClick={this.handleIncrement}>
                     <i className="fa-solid fa-square-plus"></i>
                 </button>
-                <button className='habit-button habit-decrease' onClick={this.handleDecreament}>
+                <button className='habit-button habit-decrease' onClick={this.handleDecrement}>
                     <i className="fa-solid fa-square-minus"></i>
                 </button>
-                <button className='habit-button habit-delete'>
+                <button className='habit-button habit-delete' onClick={this.handleDelete}>
                     <i className="fa-solid fa-trash"></i>
                 </button>
             </li>
