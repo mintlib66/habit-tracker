@@ -1,41 +1,28 @@
 import React, { Component } from 'react'
+import AddForm from './addform'
 import Habit from './habit'
 
 class Habits extends Component {
   handleIncrement = habit => {
-    console.log(`handleIncrement ${habit.name}`)
-    let habits = [...this.props.habits]
-    const index = habits.indexOf(habit)
-    habits[index].count++
-    this.props.onIncrement(this.props.habits)
+    this.props.onIncrement(habit)
   }
   handleDecrement = habit => {
-    console.log(`handleDecrement${habit}`)
-    let habits = [...this.props.habits]
-    const index = habits.indexOf(habit)
-    if (habits[index].count > 0) {
-      habits[index].count--
-    }
-    this.props.onDecrement(this.props.habits)
+    this.props.onDecrement(habit)
   }
   handleDelete = habit => {
-    console.log(`handleDelete${habit}`)
-    let habits = this.props.habits.filter(item => item.id !== habit.id)
-    this.props.onDelete(habits)
+    this.props.onDelete(habit)
   }
-  handleReset = () => {
-    console.log(`handleReset`)
-    let habits = [...this.props.habits]
-    habits = habits.map(item => {
-      item.count = 0
-      return item
-    })
-    this.props.onReset(habits)
+  handleAdd = name => {
+    this.props.onAdd(name)
+  }
+  handleReset = habit => {
+    this.props.onReset(habit)
   }
 
   render() {
     return (
       <>
+        <AddForm onAdd={this.handleAdd}></AddForm>
         <ul className="habit-list">
           {this.props.habits.map(habit => (
             <Habit
