@@ -1,9 +1,7 @@
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
 
 class Habit extends Component {
     handleIncrement = () => {
-        //this.props.habit.count ++ ;
-        console.log(this.props.habit);
         this.props.onIncrement(this.props.habit);
     };
     handleDecrement = () => {
