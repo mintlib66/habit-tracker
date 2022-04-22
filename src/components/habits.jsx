@@ -1,23 +1,20 @@
-import React, { Component } from 'react'
-import AddForm from './addform'
-import Habit from './habit'
+import React, { Component } from 'react';
+import AddForm from './addForm';
+import Habit from './habit';
 
 class Habits extends Component {
   handleIncrement = habit => {
-    this.props.onIncrement(habit)
-  }
+    this.props.onIncrement(habit);
+  };
   handleDecrement = habit => {
-    this.props.onDecrement(habit)
-  }
+    this.props.onDecrement(habit);
+  };
   handleDelete = habit => {
-    this.props.onDelete(habit)
-  }
+    this.props.onDelete(habit);
+  };
   handleAdd = name => {
-    this.props.onAdd(name)
-  }
-  handleReset = habit => {
-    this.props.onReset(habit)
-  }
+    this.props.onAdd(name);
+  };
 
   render() {
     return (
@@ -34,12 +31,12 @@ class Habits extends Component {
             ></Habit>
           ))}
         </ul>
-        <button className="habit-btn habit-reset" onClick={this.handleReset}>
+        <button className="habit-btn habit-reset" onClick={this.props.onReset}>
           Reset All
         </button>
       </>
-    )
+    );
   }
 }
 
-export default Habits
+export default Habits;

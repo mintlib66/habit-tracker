@@ -1,7 +1,7 @@
-import './app.css'
-import { Component } from 'react'
-import Navbar from './components/navbar'
-import Habits from './components/habits'
+import './app.css';
+import { Component } from 'react';
+import Navbar from './components/navbar';
+import Habits from './components/habits';
 
 class App extends Component {
   state = {
@@ -10,38 +10,46 @@ class App extends Component {
       { id: 1, name: 'running', count: 1 },
       { id: 2, name: 'coding', count: 0 },
     ],
-  }
+  };
 
   handleIncrement = habit => {
-    let habits = [...this.state.habits]
-    const index = habits.indexOf(habit)
-    habits[index].count++
-    this.setState({ habits })
-  }
+    let habits = this.state.habits.map(item => {
+      if (item.id === habit.id) {
+        return { ...habit, count: habit.count + 1 };
+      }
+      return item;
+    });
+    this.setState({ habits });
+  };
   handleDecrement = habit => {
-    let habits = [...this.state.habits]
-    const index = habits.indexOf(habit)
-    if (habits[index].count > 0) {
-      habits[index].count--
-    }
-    this.setState({ habits })
-  }
+    let habits = this.state.habits.map(item => {
+      if (item.id === habit.id) {
+        return {
+          ...habit,
+          count: item.count > 0 ? habit.count - 1 : habit.count,
+        };
+      }
+      return item;
+    });
+    this.setState({ habits });
+  };
   handleDelete = habit => {
-    let habits = this.state.habits.filter(item => item.id !== habit.id)
-    this.setState({ habits })
-  }
+    let habits = this.state.habits.filter(item => item.id !== habit.id);
+    this.setState({ habits });
+  };
   handleAdd = name => {
-    const habits = [...this.state.habits, { id: Date.now(), name, count: 0 }]
-    this.setState({ habits })
-  }
+    const habits = [...this.state.habits, { id: Date.now(), name, count: 0 }];
+    this.setState({ habits });
+  };
   handleReset = () => {
-    let habits = [...this.state.habits]
-    habits = habits.map(item => {
-      item.count = 0
-      return item
-    })
-    this.setState({ habits })
-  }
+    let habits = this.state.habits.map(item => {
+      if (item.count !== 0) {
+        return { ...item, count: 0 };
+      }
+      return item;
+    });
+    this.setState({ habits });
+  };
 
   render() {
     return (
@@ -60,8 +68,8 @@ class App extends Component {
           onReset={this.handleReset}
         ></Habits>
       </>
-    )
+    );
   }
 }
 
-export default App
+export default App;

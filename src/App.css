@@ -82,3 +82,6 @@ button {
 .habit-delete {
   color: darkred;
 }
+.habit-reset {
+  margin-left: 0.25em;
+}

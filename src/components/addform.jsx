@@ -1,13 +1,12 @@
-import React, { Component } from 'react'
-
-class AddForm extends Component {
-  inputRef = React.createRef()
+import React, { PureComponent } from 'react';
+class AddForm extends PureComponent {
+  inputRef = React.createRef();
   onSubmit = event => {
-    event.preventDefault()
-    const name = this.inputRef.current.value
-    name && this.props.onAdd(name)
-    this.inputRef.current.value = ''
-  }
+    event.preventDefault();
+    const name = this.inputRef.current.value;
+    name && this.props.onAdd(name);
+    this.inputRef.current.value = '';
+  };
 
   render() {
     return (
@@ -20,8 +19,8 @@ class AddForm extends Component {
         />
         <button className="habit-btn add-btn">Add</button>
       </form>
-    )
+    );
   }
 }
 
-export default AddForm
+export default AddForm;
